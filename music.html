@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Playlist</title>
+  <link rel="stylesheet" href="music.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 Playlish</h1>
+
+    <div class="playlist-section">
+      <h2>💔 Sad</h2>
+      <div class="playlist">
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="ความรู้สึกของตัวฉัน.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>ความรู้สึกของตัวฉัน - มนัสวีร์</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="-  _Official MV_.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>โลกที่แบกไว้ - มนัสวีร์</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="- Goy Arachaporn Official MV.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>จางหาย - Goy Arachaporn</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="Loop  - ASIA7 _Official MV_.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>Loop (ฉันจึงวนกลับมา) - ASIA7</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="playlist-section">
+      <h2>❤️ Love</h2>
+      <div class="playlist">
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="- Three Man Down _Official MV_.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>เพลงรัก - Three Man Down</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="ตั้งใจรัก.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>ตั้งใจรัก (happy accident) - พัด Vorapat x First Anuwat</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="- COCKTAILOfficial MV Cut Version.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>คู่ชีวิต - COCKTAIL</p>
+        </div>
+        <div class="song-card">
+          <audio class="audioPlayer" controls>
+            <source src="ดวงใจ.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+          </audio>
+          <p>ดวงใจ - ปราง ปรางทิพย์</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // เลือกทุกๆ audio element ที่มี class "audioPlayer"
+    const audioPlayers = document.querySelectorAll('.audioPlayer');
+
+    // เมื่อเพลงเล่นจบให้ไปเพลงถัดไป
+    audioPlayers.forEach(audio => {
+      audio.addEventListener('ended', function () {
+        let nextAudio = getNextAudio(audio);
+        if (nextAudio) {
+          nextAudio.play();  // เล่นเพลงถัดไป
+        }
+      });
+    });
+
+    // ฟังก์ชันที่จะให้เราได้เพลงถัดไปในลิสต์
+    function getNextAudio(currentAudio) {
+      let nextAudio = currentAudio.nextElementSibling;
+      while (nextAudio && !nextAudio.querySelector('audio')) {
+        nextAudio = nextAudio.nextElementSibling;
+      }
+      return nextAudio ? nextAudio.querySelector('audio') : null;
+    }
+  </script>
+</body>
+</html>
